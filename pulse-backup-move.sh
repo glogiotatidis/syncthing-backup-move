@@ -28,4 +28,5 @@ if [ $? -eq 1 ]; then
 fi
 
 echo "Moving"
-mv $SYNC_FOLDER/* $BACKUP_FOLDER
+rsync --recursive $SYNC_FOLDER/* $BACKUP_FOLDER
+rm -rf $SYNC_FOLDER/*
