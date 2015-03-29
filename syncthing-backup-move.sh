@@ -1,12 +1,12 @@
 #!/bin/bash
 #
 # Simple bash script to move things from SYNC_FOLDER to BACKUP_FOLDER
-# when syncthing (pulse) [0] is idle on $PULSE_FOLDER
+# when syncthing is idle on $SYNCTHING_FOLDER
 #
-# [0] https://ind.ie/pulse/
+# http://syncthing.net/
 #
-if [[ -z "$PULSE_FOLDER" ]]; then
-    echo "Set PULSE_FOLDER"
+if [[ -z "$SYNCTHING_FOLDER" ]]; then
+    echo "Set SYNCTHING_FOLDER"
     exit;
 fi
 
@@ -20,7 +20,7 @@ if [[ -z "$BACKUP_FOLDER" ]]; then
     exit;
 fi
 
-curl -s http://localhost:8080/rest/model?folder=$PULSE_FOLDER  | grep  '"state":"idle"' > /dev/null;
+curl -s http://localhost:8080/rest/model?folder=$SYNCTHING_FOLDER  | grep  '"state":"idle"' > /dev/null;
 
 if [ $? -eq 1 ]; then
    echo "Not idle";
