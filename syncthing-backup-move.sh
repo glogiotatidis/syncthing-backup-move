@@ -28,5 +28,10 @@ if [ $? -eq 1 ]; then
 fi
 
 echo "Moving"
+DATE_MOVE=`echo $DATE_MOVE|tr '[:upper:]' '[:lower:]'`
+if [ "$DATE_MOVE" == true ]; then
+    BACKUP_FOLDER="$BACKUP_FOLDER/`date +%Y-%m-%d-%H:%M`"
+    mkdir $BACKUP_FOLDER
+fi;
 rsync --recursive $SYNC_FOLDER/* $BACKUP_FOLDER
 rm -rf $SYNC_FOLDER/*
