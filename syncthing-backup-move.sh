@@ -37,6 +37,5 @@ fi;
 
 if [ $LS -eq  0 ]; then
     echo "Moving"
-    rsync --recursive $SYNC_FOLDER/* $BACKUP_FOLDER
-    rm -rf $SYNC_FOLDER/*
+    cp -r $SYNC_FOLDER/* $BACKUP_FOLDER && rm -rf $SYNC_FOLDER/*
 fi;
