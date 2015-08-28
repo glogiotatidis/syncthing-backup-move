@@ -20,7 +20,7 @@ if [[ -z "$BACKUP_FOLDER" ]]; then
     exit;
 fi
 
-curl -s http://localhost:8080/rest/model?folder=$SYNCTHING_FOLDER  | grep  '"state":"idle"' > /dev/null;
+curl -s http://localhost:8080/rest/db/status?folder=$SYNCTHING_FOLDER  | grep  '"state":"idle"' > /dev/null;
 
 if [ $? -eq 1 ]; then
    echo "Not idle";
