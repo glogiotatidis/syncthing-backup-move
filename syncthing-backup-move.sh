@@ -20,7 +20,12 @@ if [[ -z "$BACKUP_FOLDER" ]]; then
     exit;
 fi
 
-curl -s http://localhost:8080/rest/db/status?folder=$SYNCTHING_FOLDER  | grep  '"state":"idle"' > /dev/null;
+if [[ -z "$API_KEY" ]]; then
+    echo "Set API_KEY"
+    exit;
+fi
+
+curl -s -H "X-API-Key: $API_KEY" http://localhost:8080/rest/db/status?folder=$SYNCTHING_FOLDER  | grep  '"state":"idle"' > /dev/null;
 
 if [ $? -eq 1 ]; then
    echo "Not idle";
